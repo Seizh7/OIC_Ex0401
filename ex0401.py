@@ -86,25 +86,6 @@ def changeGps(image):
 
     return (latDD, latMM, latSS, latRef, lngDD, lngMM, lngSS, lngRef)
 
-# objectif : switch pour sélectionnant la fonction de changement associé à l'attribut
-# @param attribut -> l'attribut changé
-# @param image -> une image ouverte avec le module exif
-
-def switchAttributs(attribut, image):
-    st.write("warning", attribut)
-    switcher = {
-        'datetime': changeDate(image),
-        'offset_time': changeOffsetTime(image),
-        'lens_make': changeString(attribut, image),
-        'lens_model': changeString(attribut, image),
-        'make': changeString(attribut, image),
-        'model': changeString(attribut, image),
-        'software': changeString(attribut, image),
-        'gps': changeGps(image)
-    }
- 
-    return switcher.get(attribut)
-
 # objectif : convertie des coordonnées degrés minutes secondes en degrés décimales
 # @param coordinates -> l'attribut changé
 # @param image -> une image ouverte avec le module exif
@@ -169,7 +150,6 @@ if __name__ == "__main__":
             changeGps(imageE)
         else :
             None
-        #switchAttributs(attribut, imageE)
 
     # point de toutes la localisations de la carte
     data = pd.DataFrame({
